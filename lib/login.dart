@@ -11,17 +11,29 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xFFF5F5F5),// define a cor de fundo do app
+      appBar: AppBar(
+        backgroundColor: Colors.cyan[800], // define a cor de fundo do appbar
+        title: Text('Faça seu login'), // define o texto do título
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ), 
+      ),
       body: SafeArea(
         child: Column(
           children: [
+            SizedBox(height: 20),
             // ignore: sized_box_for_whitespace
             Container(
-              height: 200,
+              height: 350,
               width: double.infinity,
               child: Image.asset('img/logo.png'),
             ),
             Expanded(
               child: Container(
+                margin: EdgeInsets.only(top: 20), // define uma margem superior de 20 pixels
                 padding: EdgeInsets.all(30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -34,8 +46,11 @@ class _LoginState extends State<Login> {
                         fontSize: 20,
                         ),
                       ),
+                      style: TextStyle(
+                        fontSize: 19,
+                      ),
                     ),
-                    const SizedBox(height: 15),
+                    SizedBox(height: 10), // alteração marcada em vermelho
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Senha',
@@ -44,12 +59,18 @@ class _LoginState extends State<Login> {
                           fontSize: 20,
                         ),
                       ),
+                      style: TextStyle(
+                        fontSize: 19,
+                      ),
                       obscureText: true,
                     ),
                     const SizedBox(height: 15),
                     ElevatedButton(
                       onPressed: (){}, 
                       child: const Text("Logar"),
+                      style: ElevatedButton.styleFrom(
+                        textStyle: TextStyle(fontSize: 26)
+                      ),
                     ),
                   ],
                 ),

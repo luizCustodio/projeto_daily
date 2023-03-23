@@ -16,7 +16,7 @@ Widget build(BuildContext context) {
   return Scaffold(
   appBar: AppBar(
   title: Text("Faça o seu cadastro"),
-  backgroundColor: Colors.blue,
+  backgroundColor: Colors.red,
   ),
   body: Container(
   child: SingleChildScrollView(

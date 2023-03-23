@@ -11,7 +11,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF5F5F5),// define a cor de fundo do app
+      backgroundColor: Color.fromARGB(255, 179, 174, 174),// define a cor de fundo do app
       appBar: AppBar(
         backgroundColor: Colors.cyan[800], // define a cor de fundo do appbar
         title: Text('Faça seu login'), // define o texto do título

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'cadastro.dart';
 
 class Login extends StatefulWidget {
@@ -14,6 +15,24 @@ class _LoginState extends State<Login> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _switchValue = false;
   bool _isDarkModeEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadThemePreference();
+  }
+
+  void _loadThemePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isDarkModeEnabled = prefs.getBool('isDarkModeEnabled') ?? false;
+    });
+  }
+
+  void _saveThemePreference(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkModeEnabled', value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +88,7 @@ class _LoginState extends State<Login> {
                         setState(() {
                           _switchValue = value;
                           _isDarkModeEnabled = value;
+                          _saveThemePreference(value);
                         });
                       },
                     ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_daily/cadastro.dart';
 import 'package:projeto_daily/calendario.dart';
 import 'package:projeto_daily/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());

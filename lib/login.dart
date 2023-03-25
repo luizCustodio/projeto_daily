@@ -13,7 +13,7 @@ class _LoginState extends State<Login> {
   TextEditingController _controllerSenha = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _switchValue = false;
-  bool _isDarkModeEnabled = false; // adicionar esta variável
+  bool _isDarkModeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +63,12 @@ class _LoginState extends State<Login> {
                 title: Row(
                   children: [
                     Text('Ativar Switch Button'),
-                    Spacer(),
                     Switch(
                       value: _switchValue,
                       onChanged: (bool value) {
                         setState(() {
                           _switchValue = value;
-                          _isDarkModeEnabled = value; // atualizar valor da variável
+                          _isDarkModeEnabled = value;
                         });
                       },
                     ),
@@ -99,26 +98,40 @@ class _LoginState extends State<Login> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
-
-              SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan,
-                  onPrimary: Colors.white,
-                  padding: EdgeInsets.all(
-                  )
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(labelText: "Digite seu email"),
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+                controller: _controllerUsuario,
               ),
-                
-              child: Text(
-                "Logar",
-                style: TextStyle(fontSize: 20),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(labelText: "Digite sua senha"),
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+                controller: _controllerSenha,
+                obscureText: true,
               ),
-              onPressed: () {},
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 23, 105, 172),
+                    onPrimary: Colors.black,
+                    padding: EdgeInsets.all(15),
+                  ),
+                  child: Text(
+                    "Logar",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Não possui uma conta?',
@@ -127,20 +140,16 @@ class _LoginState extends State<Login> {
                 SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                    Navigator.push;
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const cadastro()));
 
-                      context;
-                      MaterialPageRoute(
-                        builder: ((context) => const cadastro()),
-                      );
                     //)
                   },
                   child: const Text('Cadastre-se'),
                 )
               ],
             ),
-          ],
-        ),
+          
+        ]),
       )
     ));
   }

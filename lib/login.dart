@@ -11,7 +11,8 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 179, 174, 174),// define a cor de fundo do app
+      backgroundColor:
+          Color.fromARGB(255, 179, 174, 174), // define a cor de fundo do app
       appBar: AppBar(
         backgroundColor: Colors.cyan[800], // define a cor de fundo do appbar
         title: Text('Faça seu login'), // define o texto do título
@@ -19,7 +20,7 @@ class _LoginState extends State<Login> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
-        ), 
+        ),
       ),
       body: SafeArea(
         child: Column(
@@ -33,7 +34,8 @@ class _LoginState extends State<Login> {
             ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.only(top: 20), // define uma margem superior de 20 pixels
+                margin: EdgeInsets.only(
+                    top: 20), // define uma margem superior de 20 pixels
                 padding: EdgeInsets.all(30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -42,8 +44,8 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
+                          color: Colors.black,
+                          fontSize: 20,
                         ),
                       ),
                       style: TextStyle(
@@ -66,11 +68,10 @@ class _LoginState extends State<Login> {
                     ),
                     const SizedBox(height: 15),
                     ElevatedButton(
-                      onPressed: (){}, 
+                      onPressed: () {},
                       child: const Text("Logar"),
                       style: ElevatedButton.styleFrom(
-                        textStyle: TextStyle(fontSize: 26)
-                      ),
+                          textStyle: TextStyle(fontSize: 26)),
                     ),
                   ],
                 ),

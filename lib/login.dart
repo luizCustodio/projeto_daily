@@ -119,8 +119,8 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.only(top: 10),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 23, 105, 172),
-                    onPrimary: Colors.black,
+                    primary: Colors.cyan,
+                    onPrimary: Colors.white,
                     padding: EdgeInsets.all(15),
                   ),
                   child: Text(

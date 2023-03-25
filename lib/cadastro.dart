@@ -16,7 +16,7 @@ Widget build(BuildContext context) {
   return Scaffold(
   appBar: AppBar(
   title: Text("Faça o seu cadastro"),
-  backgroundColor: Colors.blue,
+  backgroundColor: Colors.cyan,
   ),
   body: Container(
   child: SingleChildScrollView(
@@ -45,7 +45,7 @@ Widget build(BuildContext context) {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: "Nome deusuário"),
+              labelText: "Nome de usuário"),
               style: TextStyle(
               fontSize: 22,
               ),
@@ -96,7 +96,7 @@ Widget build(BuildContext context) {
                 padding: EdgeInsets.only(top: 10),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 23, 105, 172),
+                    backgroundColor: Colors.cyan,
                     foregroundColor: Colors.white,
                     padding: EdgeInsets.all(15),
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'cadastro.dart';
 
+
 class Login extends StatefulWidget {
   const Login({Key? key});
 
@@ -37,7 +38,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Meu aplicativo',
+  
       theme: _isDarkModeEnabled
           ? ThemeData.dark().copyWith(
               primaryColor: Colors.cyan.shade400,
@@ -49,18 +52,27 @@ class _LoginState extends State<Login> {
               colorScheme:
                   ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
             ),
+
       home: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text("Faça seu login"),
-          backgroundColor: Colors.cyan,
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () => _scaffoldKey.currentState!.openDrawer(),
-          ),
-          actions: [],
-        ),
-        drawer: Drawer(
+  title: Text("Faça seu login"),
+  backgroundColor: Colors.cyan,
+  leading: IconButton(
+    icon: Icon(Icons.arrow_back),
+    onPressed: () => Navigator.of(context).pop(),
+  ),
+  actions: [
+    IconButton(
+      icon: Icon(Icons.more_vert),
+      onPressed: () => _scaffoldKey.currentState!.openEndDrawer(),
+    ),
+  ],
+),
+
+        endDrawer: Drawer(
+  
+          
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
@@ -81,7 +93,7 @@ class _LoginState extends State<Login> {
               ListTile(
                 title: Row(
                   children: [
-                    Text('Ativar Switch Button'),
+                    Text('Dark Mode'),
                     Switch(
                       value: _switchValue,
                       onChanged: (bool value) {

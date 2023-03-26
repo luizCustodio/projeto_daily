@@ -48,12 +48,12 @@ class _cadastroState extends State<cadastro> {
           title: Text("Faça o seu cadastro"),
           backgroundColor: Colors.cyan,
           actions: <Widget>[
-            IconButton(
+            /*IconButton(
               icon: Icon(_isDarkModeEnabled ? Icons.light_mode : Icons.dark_mode),
               onPressed: () {
                 _setDarkModeEnabled(!_isDarkModeEnabled);
               },
-            ),
+            ),*/
           ],
         ),
         body: Container(

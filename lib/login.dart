@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'cadastro.dart';
 
-
 class Login extends StatefulWidget {
   const Login({Key? key});
 
@@ -38,79 +37,78 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Meu aplicativo',
-  
-      theme: _isDarkModeEnabled
-          ? ThemeData.dark().copyWith(
-              primaryColor: Colors.cyan.shade400,
-              colorScheme:
-                  ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
-            )
-          : ThemeData(
-              primaryColor: Colors.cyan.shade400,
-              colorScheme:
-                  ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
+        debugShowCheckedModeBanner: false,
+        
+        theme: _isDarkModeEnabled
+            ? ThemeData.dark().copyWith(
+                primaryColor: Colors.cyan.shade400,
+                colorScheme: ColorScheme.fromSwatch()
+                    .copyWith(secondary: Colors.white),
+              )
+            : ThemeData(
+                primaryColor: Colors.cyan.shade400,
+                colorScheme: ColorScheme.fromSwatch()
+                    .copyWith(secondary: Colors.white),
+              ),
+        home: Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBar(
+            title: Text("Faça seu login"),
+            backgroundColor: Colors.cyan,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pop(),
             ),
-
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-  title: Text("Faça seu login"),
-  backgroundColor: Colors.cyan,
-  leading: IconButton(
-    icon: Icon(Icons.arrow_back),
-    onPressed: () => Navigator.of(context).pop(),
-  ),
-  actions: [
-    IconButton(
-      icon: Icon(Icons.more_vert),
-      onPressed: () => _scaffoldKey.currentState!.openEndDrawer(),
-    ),
-  ],
-),
-
-        endDrawer: Drawer(
-  
-          
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text('Menu'),
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                ),
-              ),
-              ListTile(
-                title: Text('Opção 1'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Opção 2'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Text('Dark Mode'),
-                    Switch(
-                      value: _switchValue,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _switchValue = value;
-                          _isDarkModeEnabled = value;
-                          _saveThemePreference(value);
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                onTap: () {},
+            actions: [
+              IconButton(
+                icon: Icon(Icons.more_vert),
+                onPressed: () =>
+                    _scaffoldKey.currentState!.openEndDrawer(),
               ),
             ],
           ),
-        ),
+          endDrawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                DrawerHeader(
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text('Menu'),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('Dark Mode'),
+          Switch(
+            value: _switchValue,
+            onChanged: (bool value) {
+              setState(() {
+                _switchValue = value;
+                _isDarkModeEnabled = value;
+                _saveThemePreference(value);
+              });
+            },
+          ),
+        ],
+      ),
+    ],
+  ),
+                    decoration: BoxDecoration(
+                    color: Colors.cyan,
+                  ),
+                ),
+                ListTile(
+                  title: Text('Opção 1'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text('Opção 2'),
+                  onTap: () {},
+                ),               
+              ],
+            ),
+          ),
         body: Container(
           padding: EdgeInsets.all(16.0),
           child: Column(
@@ -185,4 +183,4 @@ class _LoginState extends State<Login> {
       )
     ));
   }
-}
+} 

@@ -26,6 +26,7 @@ class _LoginState extends State<Login> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _isDarkModeEnabled = prefs.getBool('isDarkModeEnabled') ?? false;
+      _switchValue = _isDarkModeEnabled;
     });
   }
 
@@ -34,81 +35,59 @@ class _LoginState extends State<Login> {
     await prefs.setBool('isDarkModeEnabled', value);
   }
 
+  void _onThemeSwitchChanged(bool value) {
+    _saveThemePreference(value);
+    setState(() {
+      _isDarkModeEnabled = value;
+      _switchValue = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        
-        theme: _isDarkModeEnabled
-            ? ThemeData.dark().copyWith(
-                primaryColor: Colors.cyan.shade400,
-                colorScheme: ColorScheme.fromSwatch()
-                    .copyWith(secondary: Colors.white),
-              )
-            : ThemeData(
-                primaryColor: Colors.cyan.shade400,
-                colorScheme: ColorScheme.fromSwatch()
-                    .copyWith(secondary: Colors.white),
-              ),
-        home: Scaffold(
-          key: _scaffoldKey,
-          appBar: AppBar(
-            title: Text("Faça seu login"),
-            backgroundColor: Colors.cyan,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop(),
+      debugShowCheckedModeBanner: false,
+      theme: _isDarkModeEnabled
+          ? ThemeData.dark().copyWith(
+              primaryColor: Colors.cyan.shade400,
+              colorScheme:
+                  ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
+            )
+          : ThemeData(
+              primaryColor: Colors.cyan.shade400,
+              colorScheme:
+                  ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
             ),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.more_vert),
-                onPressed: () =>
-                    _scaffoldKey.currentState!.openEndDrawer(),
-              ),
-            ],
+      home: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: Text("Faça seu login"),
+          backgroundColor: Colors.cyan,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          endDrawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                DrawerHeader(
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text('Menu'),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('Dark Mode'),
-          Switch(
-            value: _switchValue,
-            onChanged: (bool value) {
-              setState(() {
-                _switchValue = value;
-                _isDarkModeEnabled = value;
-                _saveThemePreference(value);
-              });
-            },
-          ),
-        ],
-      ),
-    ],
-  ),
-                    decoration: BoxDecoration(
-                    color: Colors.cyan,
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem(
+                    child: Row(
+                      children: [
+                        Text('Dark Mode'),
+                        SizedBox(width: 10),
+                        Switch(
+                          value: _switchValue,
+                          onChanged: _onThemeSwitchChanged,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                ListTile(
-                  title: Text('Opção 1'),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Text('Opção 2'),
-                  onTap: () {},
-                ),               
-              ],
+                ];
+              },
             ),
-          ),
+          ],
+        ),
         body: Container(
           padding: EdgeInsets.all(16.0),
           child: Column(

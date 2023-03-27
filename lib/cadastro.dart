@@ -50,52 +50,29 @@ class _cadastroState extends State<cadastro> {
           title: Text("Faça o seu cadastro"),
           backgroundColor: Colors.cyan,
           actions: [
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () => _scaffoldKey.currentState!.openEndDrawer(),
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Dark Mode'),
+                      Switch(
+                        value: _isDarkModeEnabled,
+                        onChanged: (bool value) {
+                          setState(() {
+                            _isDarkModeEnabled = value;
+                          });
+                          _setDarkModeEnabled(value);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              
+              ],
             ),
           ],
-        ),
-        endDrawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Menu'),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Dark Mode'),
-                        Switch(
-                          value: _isDarkModeEnabled,
-                          onChanged: (bool value) {
-                            setState(() {
-                              _isDarkModeEnabled = value;
-                            });
-                            _setDarkModeEnabled(value);
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                ),
-              ),
-              ListTile(
-                title: Text('Opção 1'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Opção 2'),
-                onTap: () {},
-              ),
-            ],
-          ),
         ),
         body: Container(
           child: SingleChildScrollView(

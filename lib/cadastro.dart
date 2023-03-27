@@ -15,6 +15,7 @@ class _cadastroState extends State<cadastro> {
   TextEditingController _controllerSenha = TextEditingController();
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerConfirmarSenha = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isDarkModeEnabled = false;
 
   late SharedPreferences _preferences;
@@ -44,17 +45,57 @@ class _cadastroState extends State<cadastro> {
     return Theme(
       data: _isDarkModeEnabled ? ThemeData.dark() : ThemeData.light(),
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Text("Faça o seu cadastro"),
           backgroundColor: Colors.cyan,
-          actions: <Widget>[
-            /*IconButton(
-              icon: Icon(_isDarkModeEnabled ? Icons.light_mode : Icons.dark_mode),
-              onPressed: () {
-                _setDarkModeEnabled(!_isDarkModeEnabled);
-              },
-            ),*/
+          actions: [
+            IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: () => _scaffoldKey.currentState!.openEndDrawer(),
+            ),
           ],
+        ),
+        endDrawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Menu'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Dark Mode'),
+                        Switch(
+                          value: _isDarkModeEnabled,
+                          onChanged: (bool value) {
+                            setState(() {
+                              _isDarkModeEnabled = value;
+                            });
+                            _setDarkModeEnabled(value);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.cyan,
+                ),
+              ),
+              ListTile(
+                title: Text('Opção 1'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Opção 2'),
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
         body: Container(
           child: SingleChildScrollView(

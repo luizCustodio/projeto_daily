@@ -163,6 +163,18 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
               children: [
+               
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {                                   
+                  },
+                  child: const Text('Esqueceu sua senha?'),
+                )
+              ],
+            ),
+             Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 Text(
                   'Não possui uma conta?',
                   style: TextStyle(fontSize: 12),
@@ -170,14 +182,13 @@ class _LoginState extends State<Login> {
                 SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const cadastro()));
-
-                    //)
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const cadastro()));                    
                   },
                   child: const Text('Cadastre-se'),
                 )
               ],
             ),
+          
           
         ]),
       )
